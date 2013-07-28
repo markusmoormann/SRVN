@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+In dieser Datei sind die Standard-Logger für alle Testsysteme definiert.
+Jeder Logger kann in der logback.xml eines speziellen Kundensystems überschrieben werden, falls dort
+andere als die hier definierten Anforderungen gelten.
+-->
+<included>
+
+    <!--Logger-->
+    <!--3rd party logger -->
+    <logger name="org.springframework" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="spring"/>
+    </logger>
+
+    <logger name="org.springframework.security" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="spring"/>
+    </logger>
+
+    <logger name="org.hibernate" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="hibernate"/>
+    </logger>
+
+    <logger name="org.hibernate.stat.Statistics">
+        <level value="warn"/>
+    </logger>
+
+    <logger name="org.hibernate.hql.ast.QueryTranslatorImpl">
+        <level value="error"/>
+    </logger>
+
+    <!--Set TRACE to log sql values-->
+
+    <logger name="org.hibernate.SQL" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="sql"/>
+    </logger>
+
+    <logger name="org.hibernate.type" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="sql"/>
+    </logger>
+
+    <logger name="org.hibernate.tool.hbm2ddl">
+        <level value="warn"/>
+    </logger>
+
+
+    <root level="warn">
+        <appender-ref ref="root"/>
+    </root>
+
+</included>

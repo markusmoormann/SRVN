@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+In dieser Datei sind Standard-Appender für alle Testsysteme definiert.
+Jeder dieser Appender kann in der logback.xml eines speziellen Kundensystems überschrieben werden, falls dort
+andere als die hier definierten Anforderungen gelten.
+-->
+<included>
+
+    <appender name="srvn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="root" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-root.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-root.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="delivery" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-delivery.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-delivery.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="asset" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-asset.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-asset.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="hibernate" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-hibernate.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-hibernate.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-sql.log</file>
+        <encoder>
+            <pattern>[%d]  %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-sql.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="spring" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-spring.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-spring.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ism" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-cobra.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-cobra.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="jobProtocol" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-jobs.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-jobs.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="soap" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-soap.log</file>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-soap.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="jdbc" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/srvn-jdbc.log</file>
+        <Encoding>UTF8</Encoding>
+        <encoder>
+            <pattern>%d %-20X{core1.login} %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/srvn-jdbc.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>0</MaxHistory>
+        </rollingPolicy>
+    </appender>
+</included>
