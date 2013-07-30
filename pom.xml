@@ -38,14 +38,54 @@
                 <version>1.0.13</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>1.6.4</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
                 <version>1.6.2</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>com.springsource.org.apache.tomcat.jdbc</artifactId>
+                <version>1.0.9.3</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.tiles</groupId>
                 <artifactId>tiles-extras</artifactId>
                 <version>2.2.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-digester</groupId>
+                        <artifactId>commons-digester</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-beanutils</groupId>
+                        <artifactId>commons-beanutils</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!-- Spring =================================== -->
             <dependency>
@@ -64,6 +104,11 @@
                 <version>3.2.3.RELEASE</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-taglibs</artifactId>
+                <version>3.1.4.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>3.2.3.RELEASE</version>
@@ -78,6 +123,18 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>3.2.3.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>3.1.4.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-digester</groupId>
+                <artifactId>commons-digester</artifactId>
+                <version>1.8.1</version>
+            </dependency>
+
             <!-- MYSQL ======================================== -->
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -90,17 +147,13 @@
                 <artifactId>hibernate-ehcache</artifactId>
                 <version>4.1.8.Final</version>
             </dependency>
+
             <dependency>
-                <groupId>net.sf.ehcache</groupId>
-                <artifactId>ehcache-core</artifactId>
-                <version>2.6.6</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.6</version>
             </dependency>
+
         </dependencies>
 
     </dependencyManagement>
@@ -136,6 +189,11 @@
             <id>springsource-repo</id>
             <name>SpringSource Repository</name>
             <url>http://repo.springsource.org/release</url>
+        </repository>
+        <repository>
+            <id>mvnrepository</id>
+            <name>Maven repository</name>
+            <url>http://mvnrepository.com/artifact</url>
         </repository>
     </repositories>
 

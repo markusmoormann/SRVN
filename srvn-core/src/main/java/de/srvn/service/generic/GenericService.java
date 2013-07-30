@@ -1,4 +1,4 @@
-package de.srvn.service;
+package de.srvn.service.generic;
 
 import de.srvn.domain.api.IdOnly;
 import org.hibernate.CacheMode;
@@ -27,8 +27,8 @@ import java.util.List;
 /**
  * Auf Hibernate basierende Implementierung des generischen Service. * * @author <a href="mailto:graves@id-on.de">Burkhard Graves</a> * @version $Id: GenericService.java 4140 2008-02-21 11:25:06Z graves $ * * @param <T> Typ des generischen Service
  */
-@Repository
-@Transactional
+//@Repository
+//@Transactional
 public class GenericService<T extends IdOnly> implements IGenericService<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(GenericService.class);

@@ -35,17 +35,27 @@ andere als die hier definierten Anforderungen gelten.
     <!--Set TRACE to log sql values-->
 
     <logger name="org.hibernate.SQL" additivity="false">
-        <level value="warn"/>
+        <level value="trace"/>
         <appender-ref ref="sql"/>
     </logger>
 
     <logger name="org.hibernate.type" additivity="false">
-        <level value="warn"/>
+        <level value="trace"/>
         <appender-ref ref="sql"/>
     </logger>
 
     <logger name="org.hibernate.tool.hbm2ddl">
+        <level value="trace"/>
+    </logger>
+
+    <logger name="ch.qos.logback">
         <level value="warn"/>
+    </logger>
+
+    <!-- srvn logger -->
+    <logger name="de.srvn.web">
+        <level value="debug"/>
+        <appender-ref ref="srvn"/>
     </logger>
 
 

@@ -4,8 +4,4 @@
     <include resource="logback/local-default-appenders.xml"/>
 
     <include resource="logback/local-default-loggers.xml"/>
-
-    <root level="warn">
-        <appender-ref ref="root"/>
-    </root>
 </configuration>

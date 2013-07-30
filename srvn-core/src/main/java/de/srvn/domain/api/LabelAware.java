@@ -7,6 +7,6 @@ package de.srvn.domain.api;
 public interface LabelAware {
 
     String getLabel();
-    void setLabel();
+    void setLabel(String label);
 
 }

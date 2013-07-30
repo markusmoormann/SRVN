@@ -4,10 +4,12 @@
  */
 package de.srvn.domain;
 
+import de.srvn.domain.api.IdOnly;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 
 /**
  * @author Markus
@@ -15,7 +17,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "startberechtigung")
 @XmlRootElement
-public class Startberechtigung implements Serializable {
+public class Startberechtigung extends IdOnly {
     private boolean schulbescheinigung;
     private boolean aktivenpass;
     private boolean gesundheitsbescheinigung;
@@ -46,6 +48,7 @@ public class Startberechtigung implements Serializable {
         this.gesundheitsbescheinigung = gesundheitsbescheinigung;
     }
 
+    @ManyToOne
     public Regatta getRegatta() {
         return regatta;
     }
@@ -54,6 +57,7 @@ public class Startberechtigung implements Serializable {
         this.regatta = regatta;
     }
 
+    @ManyToOne
     public Ruderer getRuderer() {
         return ruderer;
     }

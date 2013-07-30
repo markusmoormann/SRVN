@@ -23,7 +23,7 @@ public enum Geschlecht implements LabelAware {
     }
 
     @Override
-    public void setLabel() {
+    public void setLabel(String label) {
         this.label = label;
     }
 

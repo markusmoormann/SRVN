@@ -1,4 +1,4 @@
-package de.srvn.controller.rest;
+package de.srvn.web.controller.rest;
 
 import de.srvn.domain.api.IdOnly;
 

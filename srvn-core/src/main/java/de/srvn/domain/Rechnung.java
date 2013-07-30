@@ -3,10 +3,11 @@ package de.srvn.domain;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Markus Moormann
@@ -19,6 +20,38 @@ public class Rechnung extends IdOnly {
     private String dateiname;
     private Integer rechnungsNr;
     private BigDecimal betrag;
-    private Collection<Meldung> meldungCollection;
+    private List<Meldung> meldungList;
 
+    public String getDateiname() {
+        return dateiname;
+    }
+
+    public void setDateiname(String dateiname) {
+        this.dateiname = dateiname;
+    }
+
+    public Integer getRechnungsNr() {
+        return rechnungsNr;
+    }
+
+    public void setRechnungsNr(Integer rechnungsNr) {
+        this.rechnungsNr = rechnungsNr;
+    }
+
+    public BigDecimal getBetrag() {
+        return betrag;
+    }
+
+    public void setBetrag(BigDecimal betrag) {
+        this.betrag = betrag;
+    }
+
+    @OneToMany
+    public List<Meldung> getMeldungList() {
+        return meldungList;
+    }
+
+    public void setMeldungList(List<Meldung> meldungList) {
+        this.meldungList = meldungList;
+    }
 }

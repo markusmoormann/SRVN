@@ -1,4 +1,4 @@
-package de.srvn.service;
+package de.srvn.service.generic;
 
 import de.srvn.domain.api.IdOnly;
 import org.hibernate.CacheMode;

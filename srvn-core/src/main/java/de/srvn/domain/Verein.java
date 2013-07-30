@@ -3,9 +3,10 @@ package de.srvn.domain;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Markus Moormann
@@ -20,9 +21,76 @@ public class Verein extends IdOnly {
     private String plz;
     private String stadt;
     private String name;
-    private Collection<Boot> bootCollection;
-    private Collection<Benutzer> benutzerCollection;
-    private Collection<Protektor> protektorCollection;
-    private Collection<Ruderer> rudererCollection;
+    private List<Boot> bootList;
+    private List<Benutzer> benutzerList;
+    private List<Obmann> protektorList;
+    private List<Ruderer> rudererList;
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getPlz() {
+        return plz;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public String getStadt() {
+        return stadt;
+    }
+
+    public void setStadt(String stadt) {
+        this.stadt = stadt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @OneToMany
+    public List<Boot> getBootList() {
+        return bootList;
+    }
+
+    public void setBootList(List<Boot> bootList) {
+        this.bootList = bootList;
+    }
+
+    @OneToMany
+    public List<Benutzer> getBenutzerList() {
+        return benutzerList;
+    }
+
+    public void setBenutzerList(List<Benutzer> benutzerList) {
+        this.benutzerList = benutzerList;
+    }
+
+    @OneToMany
+    public List<Obmann> getProtektorList() {
+        return protektorList;
+    }
+
+    public void setProtektorList(List<Obmann> protektorList) {
+        this.protektorList = protektorList;
+    }
+
+    @OneToMany
+    public List<Ruderer> getRudererList() {
+        return rudererList;
+    }
+
+    public void setRudererList(List<Ruderer> rudererList) {
+        this.rudererList = rudererList;
+    }
 }
