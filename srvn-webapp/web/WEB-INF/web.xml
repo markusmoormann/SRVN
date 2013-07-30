@@ -8,8 +8,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             <!--classpath:srvn-context.xml-->
-            classpath:srvn-view.xml
+            <!--classpath:srvn-view.xml-->
             classpath:srvn-core-context.xml
+            classpath:srvn-dao-context.xml
             <!--classpath:srvn-security-web.xml-->
         </param-value>
     </context-param>
@@ -18,25 +19,25 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--<servlet>-->
-        <!--<servlet-name>backoffice</servlet-name>-->
-        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-        <!--<load-on-startup>1</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>backoffice</servlet-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</servlet-mapping>-->
 
+    <!-- rest ================== -->
     <servlet>
         <servlet-name>rest</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-
     <servlet-mapping>
         <servlet-name>rest</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+
+    <!-- Hibernate =============================== -->
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <servlet-name>rest</servlet-name>
+    </filter-mapping>
 </web-app>

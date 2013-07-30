@@ -64,9 +64,7 @@
         <property name="targetDataSource" ref="targetDataSource"/>
     </bean>
 
-    <bean class="de.srvn.web.controller.TestController"/>
-
-    <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedPackages" value="de.srvn.domain"/>
         <property name="packagesToScan" value="de.srvn.domain"/>

@@ -3,6 +3,7 @@ package de.srvn.domain;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -59,7 +60,7 @@ public class Ruderer extends IdOnly {
         this.verein = verein;
     }
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     public Geschlecht getGeschlecht() {
         return geschlecht;
     }
