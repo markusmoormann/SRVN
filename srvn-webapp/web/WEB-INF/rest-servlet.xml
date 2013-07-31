@@ -22,34 +22,34 @@
     <context:component-scan base-package="de.srvn.web.controller.rest" />
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationmanager"/>
 
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="contentNegotiationManager" ref="contentNegotiationmanager"/>
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+        <!--<property name="contentNegotiationManager" ref="contentNegotiationmanager"/>-->
+    <!--</bean>-->
 
-    <!-- Use Controller ClassNames as URLs -->
+     <!--Use Controller ClassNames as URLs -->
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
         <property name="order" value="1"/>
     </bean>
 
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="order" value="2"/>
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
-            </list>
-        </property>
-        <!--<property name="interceptors">-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<property name="order" value="2"/>-->
+        <!--<property name="messageConverters">-->
             <!--<list>-->
-                <!--<ref bean="performanceInterceptor"/>-->
-                <!--&lt;!&ndash;<ref bean="userStatisticsInterceptor"/>&ndash;&gt;-->
-                <!--<ref bean="maintenanceModeInterceptor"/>-->
+                <!--<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>-->
+                <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
+                <!--<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>-->
+                <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+                <!--<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>-->
             <!--</list>-->
         <!--</property>-->
-    </bean>
+        <!--&lt;!&ndash;<property name="interceptors">&ndash;&gt;-->
+            <!--&lt;!&ndash;<list>&ndash;&gt;-->
+                <!--&lt;!&ndash;<ref bean="performanceInterceptor"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;<ref bean="userStatisticsInterceptor"/>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<ref bean="maintenanceModeInterceptor"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</list>&ndash;&gt;-->
+        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+    <!--</bean>-->
 
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
         <property name="definitions">

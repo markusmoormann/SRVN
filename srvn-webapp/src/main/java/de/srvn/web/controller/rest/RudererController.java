@@ -7,6 +7,7 @@ import de.srvn.domain.Ruderer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
 
@@ -15,7 +16,7 @@ import javax.annotation.PostConstruct;
  * @version 28.07.13 - 18:19
  */
 @Controller
-public class RudererController extends AbstractRestController<Ruderer> {
+public class RudererController {
 
     @Autowired
     private RudererDao rudererDao;
@@ -35,7 +36,11 @@ public class RudererController extends AbstractRestController<Ruderer> {
         rudererDao.save(ruderer);
     }
 
-    @Override
+    @RequestMapping(method = RequestMethod.GET)
+    public Ruderer get(Integer id) {
+        return (Ruderer) getEntityDao().findById(id);
+    }
+//    @Override
     protected EntityDao getEntityDao() {
         return rudererDao;
     }
