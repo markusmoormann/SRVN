@@ -7,14 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * @author Markus Moormann
  * @version 28.07.13 - 18:15
  */
 @SuppressWarnings("unchecked")
-@RequestMapping(produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON)
 public abstract class AbstractRestController<E extends IdOnly> implements RestController<E> {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -36,10 +35,10 @@ public abstract class AbstractRestController<E extends IdOnly> implements RestCo
         return (E) getEntityDao().findById(id);
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<E> getAll() {
-//        return getEntityDao().findAll();
-//    }
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public List<E> getAll() {
+        return getEntityDao().findAll();
+    }
 
     protected abstract EntityDao getEntityDao();
 }
