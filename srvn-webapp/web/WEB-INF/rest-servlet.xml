@@ -33,7 +33,15 @@
     </bean>
 
     <context:component-scan base-package="de.srvn.web.controller.rest" />
-    <mvc:annotation-driven content-negotiation-manager="contentNegotiationmanager"/>
+    <bean id="jacksonObjectMapper" class="de.srvn.web.mapper.JacksonMapper"/>
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationmanager">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="jacksonObjectMapper" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
      <!--Use Controller ClassNames as URLs -->
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
