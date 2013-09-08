@@ -46,7 +46,7 @@ public class Rechnung extends IdOnly {
         this.betrag = betrag;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "rechnung")
     public List<Meldung> getMeldungList() {
         return meldungList;
     }

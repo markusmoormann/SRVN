@@ -136,7 +136,7 @@ public class Regatta extends IdOnly {
         this.startberechtigungList = startberechtigungList;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "regatta")
     public List<Rennen> getRennenList() {
         return rennenList;
     }

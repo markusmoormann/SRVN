@@ -26,7 +26,7 @@ public class Obmann extends IdOnly {
     private String telefon;
     private Verein verein;
 
-    @OneToMany
+    @OneToMany(mappedBy = "obmann")
     public List<Meldung> getMeldungList() {
         return meldungList;
     }

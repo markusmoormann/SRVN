@@ -3,11 +3,10 @@ package de.srvn.domain;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @author Markus Moormann
@@ -26,7 +25,7 @@ public class RegattaEinstellung extends IdOnly {
     private BigDecimal preis4;
     private BigDecimal preis8;
     private BigDecimal startbahnen;
-    private List<Regatta> regattaList;
+    private Regatta regatta;
 
     public int getRechnungsNr() {
         return rechnungsNr;
@@ -100,12 +99,12 @@ public class RegattaEinstellung extends IdOnly {
         this.startbahnen = startbahnen;
     }
 
-    @OneToMany
-    public List<Regatta> getRegattaList() {
-        return regattaList;
+    @OneToOne
+    public Regatta getRegatta() {
+        return regatta;
     }
 
-    public void setRegattaList(List<Regatta> regattaList) {
-        this.regattaList = regattaList;
+    public void setRegatta(Regatta regatta) {
+        this.regatta = regatta;
     }
 }

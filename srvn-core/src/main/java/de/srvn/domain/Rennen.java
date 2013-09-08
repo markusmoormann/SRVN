@@ -171,7 +171,7 @@ public class Rennen extends IdOnly {
         this.regatta = regatta;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "rennen")
     public List<Lauf> getLaufList() {
         return laufList;
     }
@@ -180,7 +180,7 @@ public class Rennen extends IdOnly {
         this.laufList = laufList;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "rennen")
     public List<Meldung> getMeldungList() {
         return meldungList;
     }

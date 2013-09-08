@@ -58,7 +58,7 @@ public class Verein extends IdOnly {
         this.name = name;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "verein")
     public List<Boot> getBootList() {
         return bootList;
     }
@@ -67,7 +67,7 @@ public class Verein extends IdOnly {
         this.bootList = bootList;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "verein")
     public List<Benutzer> getBenutzerList() {
         return benutzerList;
     }
@@ -76,7 +76,7 @@ public class Verein extends IdOnly {
         this.benutzerList = benutzerList;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "verein")
     public List<Obmann> getProtektorList() {
         return protektorList;
     }

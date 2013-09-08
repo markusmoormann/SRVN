@@ -35,7 +35,7 @@ public class Boot extends IdOnly {
         this.verein = verein;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "boot")
     public List<Meldung> getMeldungList() {
         return meldungList;
     }

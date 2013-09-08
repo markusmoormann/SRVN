@@ -51,7 +51,7 @@ public class Lauf extends IdOnly {
         this.rennen = rennen;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "lauf")
     public List<Ergebnis> getErgebnisList() {
         return ergebnisList;
     }
