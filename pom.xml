@@ -27,16 +27,6 @@
                 <artifactId>srvn-core</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>javax.persistence</groupId>-->
-                <!--<artifactId>persistence-api</artifactId>-->
-                <!--<version>2</version>-->
-            <!--</dependency>-->
-            <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
-                <version>2.1.0</version>
-            </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
