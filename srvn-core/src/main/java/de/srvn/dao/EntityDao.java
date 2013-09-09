@@ -10,8 +10,9 @@ import java.util.List;
 public interface EntityDao<E extends IdOnly> {
 
     void save(E value);
-    void update(E value);
-    void saveOrUpdate(E value);
+    void delete(E value);
+//    void update(E value);
+//    void saveOrUpdate(E value);
 
     E findById(Integer id);
     List<E> findAll();

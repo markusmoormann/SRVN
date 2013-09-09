@@ -1,8 +1,8 @@
-package de.srvn.web;
+package de.srvn.web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -11,7 +11,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfiguration.class};
+        return new Class[]{RestAppConfiguration.class};
     }
 
     @Override
