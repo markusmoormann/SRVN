@@ -3,6 +3,7 @@ package de.srvn.domain;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -99,6 +100,7 @@ public class Obmann extends IdOnly {
         this.telefon = telefon;
     }
 
+    @ManyToOne
     public Verein getVerein() {
         return verein;
     }

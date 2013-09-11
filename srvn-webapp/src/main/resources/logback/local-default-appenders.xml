@@ -17,7 +17,7 @@ andere als die hier definierten Anforderungen gelten.
     <appender name="srvn" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${catalina.home}/logs/srvn.log</file>
         <encoder>
-            <pattern>%d %-20X %-50.50X{request} %-5p [%.30c] - %m %n</pattern>
+            <pattern>%d %-20X %-20.20X{request} %-5p [%.30c] - %m %n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -41,7 +41,7 @@ andere als die hier definierten Anforderungen gelten.
     <appender name="hibernate" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${catalina.home}/logs/srvn-hibernate.log</file>
         <encoder>
-            <pattern>%d %-20X %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <pattern>%d %-20X %-5p [%.30c] - %m %n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -65,7 +65,7 @@ andere als die hier definierten Anforderungen gelten.
     <appender name="spring" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${catalina.home}/logs/srvn-spring.log</file>
         <encoder>
-            <pattern>%d %-20X %-70.70X{request} %-5p [%.30c] - %m %n</pattern>
+            <pattern>%d %-20X %-20.20X{request} %-5p [%.30c] - %m %n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

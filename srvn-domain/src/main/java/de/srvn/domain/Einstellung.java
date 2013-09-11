@@ -1,7 +1,5 @@
 package de.srvn.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import de.srvn.domain.api.IdOnly;
 
 import javax.persistence.Entity;
@@ -14,19 +12,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version 24.07.2012
  */
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Table(name = "einstellung")
 @XmlRootElement
 public class Einstellung extends IdOnly {
-    private String key;
+    private String valueKey;
     private String value;
 
-    public String getKey() {
-        return key;
+    public String getValueKey() {
+        return valueKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setValueKey(String valueKey) {
+        this.valueKey = valueKey;
     }
 
     public String getValue() {

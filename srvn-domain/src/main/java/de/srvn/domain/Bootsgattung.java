@@ -18,6 +18,8 @@ public class Bootsgattung extends Value implements LabelAware {
 
     private String label;
 
+    private Bootsgattung() {}
+
     private Bootsgattung(String label) {
         this.label = label;
     }

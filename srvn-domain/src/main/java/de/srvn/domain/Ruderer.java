@@ -6,8 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Ruderer extends IdOnly {
 
     private String name;
     private Integer jahrgang;
-    private List<Startberechtigung> startberechtigungList;
+    private List<Startberechtigung> startberechtigungList = new ArrayList<>();
     private Verein verein;
     private Geschlecht geschlecht;
 
@@ -41,7 +42,7 @@ public class Ruderer extends IdOnly {
         this.jahrgang = jahrgang;
     }
 
-    @OneToMany
+    @Transient
     public List<Startberechtigung> getStartberechtigungList() {
         return startberechtigungList;
     }

@@ -23,7 +23,7 @@ public class Verein extends IdOnly {
     private String name;
     private List<Boot> bootList;
     private List<Benutzer> benutzerList;
-    private List<Obmann> protektorList;
+    private List<Obmann> obmannList;
     private List<Ruderer> rudererList;
 
     public String getAdresse() {
@@ -77,15 +77,15 @@ public class Verein extends IdOnly {
     }
 
     @OneToMany(mappedBy = "verein")
-    public List<Obmann> getProtektorList() {
-        return protektorList;
+    public List<Obmann> getObmannList() {
+        return obmannList;
     }
 
-    public void setProtektorList(List<Obmann> protektorList) {
-        this.protektorList = protektorList;
+    public void setObmannList(List<Obmann> obmannList) {
+        this.obmannList = obmannList;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "verein")
     public List<Ruderer> getRudererList() {
         return rudererList;
     }
