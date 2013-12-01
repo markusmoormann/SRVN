@@ -1,15 +1,14 @@
 package de.srvn.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import de.srvn.domain.api.IdOnly;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +18,8 @@ import java.util.List;
  * @version 05.07.2012
  */
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Table(name = "regatta")
-@XmlRootElement
+@Indexed
 public class Regatta extends IdOnly {
     private RegattaEinstellung einstellung;
     private String name;
@@ -46,6 +44,7 @@ public class Regatta extends IdOnly {
         this.einstellung = einstellung;
     }
 
+    @Field
     public String getName() {
         return name;
     }
@@ -54,6 +53,7 @@ public class Regatta extends IdOnly {
         this.name = name;
     }
 
+    @Field
     public String getOrt() {
         return ort;
     }
@@ -102,6 +102,7 @@ public class Regatta extends IdOnly {
         this.veranstaltungBis = veranstaltungBis;
     }
 
+    @Field
     public String getNameKurz() {
         return nameKurz;
     }
@@ -110,6 +111,7 @@ public class Regatta extends IdOnly {
         this.nameKurz = nameKurz;
     }
 
+    @Field
     public String getVeranstalter() {
         return veranstalter;
     }

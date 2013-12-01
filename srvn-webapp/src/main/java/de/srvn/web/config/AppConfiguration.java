@@ -13,8 +13,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.support.ServletContextResource;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -27,6 +29,8 @@ public class AppConfiguration {
     private String jdbcUsername;
     @Value("${jdbc.password}")
     private String jdbcPassword;
+    @Value("${hibernate.search.default.indexBase}")
+    private String indexBase;
 
 
     @Bean
@@ -41,7 +45,7 @@ public class AppConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.MYSQL);
         vendorAdapter.setGenerateDdl(true);
@@ -50,8 +54,15 @@ public class AppConfiguration {
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("de.srvn.domain");
         factory.setDataSource(dataSource());
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.search.default.directory_provider", "filesystem");
+        properties.setProperty("hibernate.search.default.indexBase", indexBase);
+        factory.setJpaProperties(properties);
 
-        return factory;
+        factory.afterPropertiesSet();
+
+        return factory.getObject();
     }
 
     @Bean

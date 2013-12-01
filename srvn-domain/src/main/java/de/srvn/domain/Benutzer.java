@@ -1,6 +1,9 @@
 package de.srvn.domain;
 
 import de.srvn.domain.api.IdOnly;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -20,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "benutzer")
 @XmlRootElement
+@Indexed
 public class Benutzer extends IdOnly {
 
     private Verein verein;
@@ -38,6 +42,7 @@ public class Benutzer extends IdOnly {
         this.verein = verein;
     }
 
+    @Field(store = Store.YES)
     public String getBenutzername() {
         return benutzername;
     }

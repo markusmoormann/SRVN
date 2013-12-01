@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+In dieser Datei sind die Standard-Logger für alle Testsysteme definiert.
+Jeder Logger kann in der logback.xml eines speziellen Kundensystems überschrieben werden, falls dort
+andere als die hier definierten Anforderungen gelten.
+-->
+<included>
+
+    <!--Logger-->
+    <!--3rd party logger -->
+    <logger name="org.springframework" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="org.springframework.security" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="ch.qos.logback">
+        <level value="warn"/>
+    </logger>
+
+    <!-- srvn logger -->
+    <logger name="de.srvn.client" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+
+</included>

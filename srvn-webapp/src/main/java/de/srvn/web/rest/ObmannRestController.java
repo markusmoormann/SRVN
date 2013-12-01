@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(value = "obmann")
-public class ObmannRestService extends AbstractRestController<Obmann> {
+public class ObmannRestController extends AbstractRestController<Obmann> {
 
     @Autowired
     private EntityDao<Obmann> obmannDao;

@@ -8,7 +8,7 @@ import de.srvn.domain.api.LabelAware;
  */
 public enum Geschlecht implements LabelAware {
 
-    MÄNNLICH("männlich"),
+    MAENNLICH("männlich"),
     WEIBLICH("weiblich");
 
     private String label;

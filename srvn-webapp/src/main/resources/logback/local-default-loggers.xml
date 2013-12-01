@@ -45,7 +45,7 @@ andere als die hier definierten Anforderungen gelten.
     </logger>
 
     <logger name="org.hibernate.tool.hbm2ddl">
-        <level value="warn"/>
+        <level value="trace"/>
     </logger>
 
     <logger name="ch.qos.logback">

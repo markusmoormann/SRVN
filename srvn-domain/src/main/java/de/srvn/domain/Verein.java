@@ -1,11 +1,12 @@
 package de.srvn.domain;
 
 import de.srvn.domain.api.IdOnly;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "verein")
-@XmlRootElement
+@Indexed
 public class Verein extends IdOnly {
 
     private String adresse;
@@ -50,6 +51,7 @@ public class Verein extends IdOnly {
         this.stadt = stadt;
     }
 
+    @Field
     public String getName() {
         return name;
     }
