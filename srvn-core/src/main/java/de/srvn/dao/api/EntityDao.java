@@ -12,6 +12,7 @@ public interface EntityDao<E extends IdOnly> {
 
     void save(E value);
     void delete(E value);
+    E merge(E value);
 
     E findById(Integer id);
     List<E> findAll();

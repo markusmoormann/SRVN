@@ -1,6 +1,10 @@
 package de.srvn.dao.api;
 
 import de.srvn.domain.api.IdOnly;
+import org.apache.lucene.search.Query;
+import org.hibernate.search.jpa.FullTextQuery;
+import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -77,7 +81,34 @@ public abstract class AbstractDao<E extends IdOnly> implements EntityDao<E> {
         return executeSearch(parameterMap);
     }
 
-    protected abstract List<E> executeSearch(Map<String, String> parameter);
+    public E merge(E object) {
+        return entityManager.merge(object);
+    }
+
+//    public void search(String searchString) {
+//        // Create a Query Builder
+//        QueryBuilder qb = Search.getFullTextEntityManager(entityManager).getSearchFactory().buildQueryBuilder().forEntity(Ruderer.class).get();
+//
+//        // Create a Lucene Full Text Query
+//        Query query = qb.bool()
+//                .must(qb.keyword().onFields("name").matching(searchString).createQuery()).createQuery();
+//
+//        FullTextQuery fullTextQuery = Search.getFullTextEntityManager(entityManager).createFullTextQuery(query, Ruderer.class);
+//
+//        // Run Query and print out results to console
+//        List<Ruderer> result = (List<Ruderer>) fullTextQuery.getResultList();
+//    }
+
+    public List<E> executeSearch(Map<String, String> parameter) {
+        QueryBuilder queryBuilder = Search.getFullTextEntityManager(entityManager).getSearchFactory().buildQueryBuilder().forEntity(referenceClass).get();
+        // Create a Lucene Full Text Query
+        Query query = createQuery(parameter, queryBuilder);
+        FullTextQuery fullTextQuery = Search.getFullTextEntityManager(entityManager).createFullTextQuery(query, referenceClass);
+        // Run Query and print out results to console
+        return fullTextQuery.getResultList();
+    }
+
+    protected abstract Query createQuery(Map<String, String> parameter, QueryBuilder queryBuilder);
 
     private boolean containsField(String fieldname) {
         EntityType<E> entityType = entityManager.getMetamodel().entity(referenceClass);

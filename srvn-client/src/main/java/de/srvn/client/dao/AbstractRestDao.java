@@ -42,8 +42,19 @@ public abstract class AbstractRestDao<T extends IdOnly> {
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
     }
 
-    public void save(T object) {
+    public AsyncWebresource<T> saveAsync(final T object) {
+        Callable<T> callable = new Callable<T>() {
+            @Override
+            public T call() throws Exception {
+                String result = webserviceClient.postResource(getResource(), mapper.writeValueAsString(object));
+                return mapper.readValue(result, clazz);
+            };
+        };
+        return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
+    }
 
+    public T save(T object) {
+        return saveAsync(object).waitTillDone();
     }
 
     public AsyncWebresource<List<T>> loadAllAsync() {
@@ -52,8 +63,9 @@ public abstract class AbstractRestDao<T extends IdOnly> {
             @Override
             public List<T> call() throws Exception {
                 String result = webserviceClient.getResource(getResource());
-                return mapper.readValue(result, new TypeReference<List<T>>() {
+                List<T> resultList = mapper.readValue(result, new TypeReference<List<T>>() {
                 });
+                return resultList;
             }
         };
         return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));

@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -24,12 +25,15 @@ public abstract class AbstractRestController<E extends IdOnly> {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @RequestMapping(method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public E add(@RequestBody E value) {
-        getEntityDao().save(value);
-        return value;
+        return getEntityDao().merge(value);
     }
 
     @RequestMapping(method = RequestMethod.PUT,
@@ -66,13 +70,6 @@ public abstract class AbstractRestController<E extends IdOnly> {
             parameterMap.put(entry.getKey(), entry.getValue()[0]);
         }
         return getEntityDao().search(parameterMap);
-    }
-
-    @RequestMapping(method = RequestMethod.GET,
-            value = "search2",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public void search2(@RequestParam String searchString) {
-
     }
 
 //    @RequestMapping(value = "bla", method = RequestMethod.GET)

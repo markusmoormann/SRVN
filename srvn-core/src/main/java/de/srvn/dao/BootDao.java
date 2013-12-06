@@ -2,9 +2,10 @@ package de.srvn.dao;
 
 import de.srvn.dao.api.AbstractDao;
 import de.srvn.domain.Boot;
+import org.apache.lucene.search.Query;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Map;
 @Component
 public class BootDao extends AbstractDao<Boot> {
     @Override
-    protected List<Boot> executeSearch(Map<String, String> parameter) {
+    protected Query createQuery(Map<String, String> parameter, QueryBuilder queryBuilder) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

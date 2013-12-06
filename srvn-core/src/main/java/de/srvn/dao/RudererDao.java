@@ -2,10 +2,11 @@ package de.srvn.dao;
 
 import de.srvn.dao.api.AbstractDao;
 import de.srvn.domain.Ruderer;
+import org.apache.lucene.search.Query;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Map;
 public class RudererDao extends AbstractDao<Ruderer> {
 
     @Override
-    protected List<Ruderer> executeSearch(Map<String, String> parameter) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    protected Query createQuery(Map<String, String> parameter, QueryBuilder queryBuilder) {
+        return queryBuilder.bool().must(queryBuilder.keyword().onFields("name").matching(parameter.get("name")).createQuery()).createQuery();
     }
 }
