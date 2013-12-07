@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
  * @author Markus Moormann
  * @version 18.11.13 - 19:30
  */
-public abstract class AbstractRestDao<T extends IdOnly> {
+public abstract class AbstractRestDao<T extends IdOnly> implements RestDao<T> {
 
     private static ExecutorService EXECUTOR_SERVICE;
 
@@ -42,6 +42,7 @@ public abstract class AbstractRestDao<T extends IdOnly> {
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
     }
 
+    @Override
     public AsyncWebresource<T> saveAsync(final T object) {
         Callable<T> callable = new Callable<T>() {
             @Override
@@ -53,10 +54,12 @@ public abstract class AbstractRestDao<T extends IdOnly> {
         return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
     }
 
+    @Override
     public T save(T object) {
         return saveAsync(object).waitTillDone();
     }
 
+    @Override
     public AsyncWebresource<List<T>> loadAllAsync() {
         Callable<List<T>> callable = new Callable<List<T>>() {
 
@@ -71,10 +74,12 @@ public abstract class AbstractRestDao<T extends IdOnly> {
         return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
     }
 
+    @Override
     public List<T> loadAll() {
         return loadAllAsync().waitTillDone();
     }
 
+    @Override
     public AsyncWebresource<T> loadAsync(final Integer id) {
         Callable<T> callable = new Callable<T>() {
             @Override
@@ -86,6 +91,7 @@ public abstract class AbstractRestDao<T extends IdOnly> {
         return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
     }
 
+    @Override
     public T load(Integer id) {
         return loadAsync(id).waitTillDone();
     }

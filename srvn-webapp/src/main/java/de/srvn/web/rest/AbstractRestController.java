@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +22,6 @@ import java.util.Map;
 public abstract class AbstractRestController<E extends IdOnly> {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -71,20 +66,6 @@ public abstract class AbstractRestController<E extends IdOnly> {
         }
         return getEntityDao().search(parameterMap);
     }
-
-//    @RequestMapping(value = "bla", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String hallo(@Context SearchContext searchContext) {
-//        logger.info("hallo");
-//        return "hallo";
-//    }
-
-//    @RequestMapping(value = "test", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String test(@Context SearchContext searchContext) {
-//        logger.info("test");
-//        return "test";
-//    }
 
     protected abstract EntityDao<E> getEntityDao();
 }
