@@ -1,6 +1,6 @@
 package de.srvn.client.webservice;
 
-import de.srvn.client.config.ApplicationConfig;
+import de.srvn.client.config.Application;
 import de.srvn.client.exception.SrvnException;
 import de.srvn.client.security.SecurityContext;
 import org.apache.commons.compress.utils.Charsets;
@@ -39,7 +39,7 @@ public class WebserviceClient {
     private SecurityContext securityContext;
 
     @Autowired
-    private ApplicationConfig applicationConfig;
+    private Application application;
 
     private CloseableHttpClient httpClient;
 
@@ -58,7 +58,7 @@ public class WebserviceClient {
 
     public String postResource(String resource, String content) throws SrvnException {
         try {
-            String url = applicationConfig.getRestUrl() + resource;
+            String url = application.getRestUrl() + resource;
             logger.debug("trying to post to url '{}' with content '{}'", url, content);
             HttpPost post = new HttpPost(url);
             post.setHeader(new BasicHeader("Content-Type", "application/json"));
@@ -81,7 +81,7 @@ public class WebserviceClient {
 
     public String getResource(String resource, NameValuePair... valuePairs) throws SrvnException {
         try {
-            String url = applicationConfig.getRestUrl() + resource;
+            String url = application.getRestUrl() + resource;
             if (valuePairs.length > 0) {
                 url += "?";
             }

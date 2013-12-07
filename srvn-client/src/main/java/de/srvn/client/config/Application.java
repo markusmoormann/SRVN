@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @version 18.11.13 - 21:01
  */
 @Component
-public class ApplicationConfig {
+public class Application {
 
     private String restUrl;
 
