@@ -1,5 +1,6 @@
 package de.srvn.client.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Application {
 
+    @Value("${srvn.rest.url}")
     private String restUrl;
 
     public String getRestUrl() {
-//        return restUrl;
-        return "http://localhost:8080/rest/";
+        return restUrl;
     }
 
     public void setRestUrl(String restUrl) {

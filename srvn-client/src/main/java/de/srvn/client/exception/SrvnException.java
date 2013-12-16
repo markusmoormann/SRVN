@@ -7,10 +7,10 @@ package de.srvn.client.exception;
 public class SrvnException extends RuntimeException {
 
     public SrvnException(String message, Throwable cause) {
-        super(message, cause);    //To change body of overridden methods use File | Settings | File Templates.
+        super(message, cause);
     }
 
     public SrvnException(Throwable cause) {
-        super(cause);    //To change body of overridden methods use File | Settings | File Templates.
+        super(cause);
     }
 }

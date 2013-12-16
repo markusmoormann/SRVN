@@ -2,6 +2,7 @@ package de.srvn.client.webservice;
 
 import de.srvn.client.config.Application;
 import de.srvn.client.exception.SrvnException;
+import de.srvn.client.exception.webservice.ServerNotAvailableException;
 import de.srvn.client.security.SecurityContext;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.http.HttpStatus;
@@ -24,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
+import java.net.ConnectException;
 
 /**
  * @author Markus Moormann
@@ -64,6 +65,7 @@ public class WebserviceClient {
             post.setHeader(new BasicHeader("Content-Type", "application/json"));
             post.setEntity(new StringEntity(content, Charsets.UTF_8));
             CloseableHttpResponse response = httpClient.execute(post);
+            assertSC_OKStatus(response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
                 logger.debug("result content: {}", result);
@@ -74,7 +76,7 @@ public class WebserviceClient {
                 }
             }
         } catch (Exception e) {
-            throw new SrvnException(e);
+            handleException(e);
         }
         return "";
     }
@@ -91,21 +93,33 @@ public class WebserviceClient {
             logger.debug("trying to obtain url: '{}'", url);
             HttpGet get = new HttpGet(url);
             CloseableHttpResponse response = httpClient.execute(get);
-            logger.debug("result status code: {}", response.getStatusLine().getStatusCode());
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                String content = EntityUtils.toString(response.getEntity());
-                logger.debug("result content: {}", content);
-                return content;
-            } else {
-                switch (response.getStatusLine().getStatusCode()) {
-                    case HttpStatus.SC_FORBIDDEN:
-                }
-            }
-        } catch (IOException e) {
-            throw new SrvnException(e);
+            assertSC_OKStatus(response.getStatusLine().getStatusCode());
+            String content = EntityUtils.toString(response.getEntity());
+            logger.debug("result content: {}", content);
+            return content;
+        } catch (Exception e) {
+            handleException(e);
         }
         return "";
     }
 
+    private void handleException(Exception e) throws SrvnException {
+        if (e instanceof SrvnException) {
+            throw (SrvnException) e;
+        }
+        if (e instanceof ConnectException) {
+            throw new ServerNotAvailableException(e);
+        }
+    }
+
+    private void assertSC_OKStatus(int statusCode) {
+        logger.debug("result status code: {}", statusCode);
+        if (statusCode != HttpStatus.SC_OK) {
+            switch (statusCode) {
+                case HttpStatus.SC_NOT_FOUND:
+
+            }
+        }
+    }
 
 }

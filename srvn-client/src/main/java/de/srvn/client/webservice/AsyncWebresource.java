@@ -18,12 +18,12 @@ public class AsyncWebresource<T> {
     }
 
     public T waitTillDone() {
-        while (!future.isDone()) {
-
-        }
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
+            if (e.getCause() instanceof SrvnException) {
+                throw (SrvnException) e.getCause();
+            }
             throw new SrvnException(e);
         }
     }

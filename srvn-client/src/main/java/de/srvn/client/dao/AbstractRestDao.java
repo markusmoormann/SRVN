@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import de.srvn.client.webservice.AsyncWebresource;
 import de.srvn.client.webservice.WebserviceClient;
+import de.srvn.client.webservice.WebserviceExecutor;
 import de.srvn.domain.api.IdOnly;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,8 +14,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author Markus Moormann
@@ -22,19 +21,15 @@ import java.util.concurrent.Executors;
  */
 public abstract class AbstractRestDao<T extends IdOnly> implements RestDao<T> {
 
-    private static ExecutorService EXECUTOR_SERVICE;
-
     @Autowired
     private WebserviceClient webserviceClient;
+
+    @Autowired
+    private WebserviceExecutor webserviceExecutor;
 
     private ObjectMapper mapper;
     private Class<T> clazz;
     private CollectionType collectionType;
-
-    @PostConstruct
-    public void initExecutorService() {
-        EXECUTOR_SERVICE = Executors.newFixedThreadPool(100);
-    }
 
     @PostConstruct
     public void init() {
@@ -54,7 +49,7 @@ public abstract class AbstractRestDao<T extends IdOnly> implements RestDao<T> {
                 return mapper.readValue(result, clazz);
             };
         };
-        return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
+        return webserviceExecutor.submit(callable);
     }
 
     @Override
@@ -73,7 +68,7 @@ public abstract class AbstractRestDao<T extends IdOnly> implements RestDao<T> {
                 return resultList;
             }
         };
-        return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
+        return webserviceExecutor.submit(callable);
     }
 
     @Override
@@ -90,7 +85,7 @@ public abstract class AbstractRestDao<T extends IdOnly> implements RestDao<T> {
                 return mapper.readValue(result, clazz);
             }
         };
-        return new AsyncWebresource<>(EXECUTOR_SERVICE.submit(callable));
+        return webserviceExecutor.submit(callable);
     }
 
     @Override

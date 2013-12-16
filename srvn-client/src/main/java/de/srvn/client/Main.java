@@ -16,6 +16,8 @@ public class Main {
         context.refresh();
         MainApp mainApp = context.getBean(MainApp.class);
         mainApp.run();
+
+        context.close();
     }
 
 }
