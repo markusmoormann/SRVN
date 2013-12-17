@@ -15,25 +15,25 @@ andere als die hier definierten Anforderungen gelten.
     </appender>
 
     <appender name="srvn" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${catalina.home}/logs/srvn.log</file>
+        <file>${java.io.tmpdir}/logs/srvn.log</file>
         <encoder>
             <pattern>%d %-20X %-20.20X{request} %-5p [%.30c] - %m %n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.home}/logs/srvn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${java.io.tmpdir}/logs/srvn.%d{yyyy-MM-dd}.log</fileNamePattern>
             <MaxHistory>0</MaxHistory>
         </rollingPolicy>
     </appender>
 
     <appender name="root" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${catalina.home}/logs/srvn-root.log</file>
+        <file>${java.io.tmpdir}/logs/srvn-root.log</file>
         <encoder>
             <pattern>%d %-20X %-20.20X{request} %-5p [%.30c] - %m %n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.home}/logs/srvn-root.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${java.io.tmpdir}/logs/srvn-root.%d{yyyy-MM-dd}.log</fileNamePattern>
             <MaxHistory>0</MaxHistory>
         </rollingPolicy>
     </appender>

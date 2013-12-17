@@ -1,7 +1,7 @@
 out
 *.iml
 .idea
-
+derby.log
 overlays
 target
 .DS_Store

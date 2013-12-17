@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<MenuBar xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.srvn.client.view.menu.MenuView">
+  <menus>
+    <Menu mnemonicParsing="false" text="Regatta">
+      <items>
+        <MenuItem mnemonicParsing="false" onAction="#exit" text="Beenden" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Bearbeiten">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Delete" onAction="#test" />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Einstellungen">
+      <items>
+        <MenuItem mnemonicParsing="false" text="About" />
+      </items>
+    </Menu>
+  </menus>
+</MenuBar>
